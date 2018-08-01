@@ -1,0 +1,21 @@
+.header {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  &__title {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+
+    span {
+      display: inline-block;
+      transition: 0.2s ease-in-out all;
+      min-width: 10px;
+    }
+  }
+}
+
+.moveSpan {
+  color: red;
+  transform: translateY(10%) scale(1.05);
+}

@@ -1,2 +1,0 @@
-# HangmanGame
-Created with CodeSandbox
