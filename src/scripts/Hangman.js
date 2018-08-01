@@ -36,12 +36,15 @@ export class Hangman {
     }
   }
   resetGame(text) {
+    if (this.status === "playing") {
+      this.attempts.fail++;
+    }
     this.chances = 5;
     this.guessedLetters = [];
     this.status = "playing";
     this.word = text.toLowerCase().split("");
   }
-  render(element) {
+  render(puzzleEl, attemptsEl, chancesEl) {
     let renderedText = "";
     switch (this.status) {
       case "playing":
@@ -62,7 +65,11 @@ export class Hangman {
         renderedText = "You won! Play Again";
         break;
     }
-    element.textContent = renderedText.toUpperCase();
+    puzzleEl.textContent = renderedText.toUpperCase();
+    chancesEl.textContent = `Chances left: [${this.chances}]`;
+    attemptsEl.textContent = `(Success: ${this.attempts.success} // Fails: ${
+      this.attempts.fail
+    })`;
     console.log(this.attempts);
   }
 }

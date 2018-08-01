@@ -19,21 +19,22 @@ const spansHeader = headerTitle.querySelectorAll("span");
 spansHeader.forEach(el => el.addEventListener("mouseover", moveElement));
 spansHeader.forEach(el => el.addEventListener("mouseout", moveBackElement));
 
-buttonStart.addEventListener("click", async () => {
+buttonStart.addEventListener("click", async e => {
   const text = await request(2);
   game = new Hangman(text, 5);
-  game.render(puzzle);
+  game.render(puzzle, chancesEl, results);
   window.addEventListener("keydown", e => {
     const guess = e.key.toLowerCase();
     game.makeGuess(guess);
     game.setStatus();
-    game.render(puzzle);
+    game.render(puzzle, chancesEl, results);
   });
+  e.target.disabled = true;
 });
 buttonReset.addEventListener("click", async () => {
   if (game) {
     const text = await request(2);
     game.resetGame(text);
-    game.render(puzzle);
+    game.render(puzzle, chancesEl, results);
   }
 });

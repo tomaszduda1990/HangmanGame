@@ -1,5 +1,17 @@
 @import "./assets/Variables";
 @import "./components/Header";
+@import "./components/Puzzle";
 body {
   background: $backgroundBody;
+  height: 100vh;
+  // overflow: hidden;
+  padding: 0;
+  margin: 0;
+}
+section {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
