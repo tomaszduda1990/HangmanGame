@@ -7,6 +7,9 @@ const puzzle = document.querySelector(".puzzle__text");
 const buttonStart = document.querySelector(".startButton");
 const headerTitle = document.querySelector(".header__title");
 const buttonReset = document.querySelector(".puzzle__reset");
+const chancesEl = document.querySelector(".info__chances");
+const results = document.querySelector(".info__results");
+
 headerTitle.innerHTML = headerTitle.textContent
   .split("")
   .map(letter => `<span>${letter}</span>`)
