@@ -1,17 +1,22 @@
 @import "./assets/Variables";
 @import "./components/Header";
 @import "./components/Puzzle";
+@import "./components/Info";
+@import "./components/Buttons";
 body {
   background: $backgroundBody;
   height: 100vh;
-  // overflow: hidden;
+  text-align: center;
+  overflow: hidden;
   padding: 0;
   margin: 0;
+  font-family: "Roboto", sans-serif;
 }
 section {
   display: flex;
+  position: relative;
   height: 100%;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 }

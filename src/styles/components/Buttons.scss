@@ -1,0 +1,49 @@
+button {
+  height: 200px;
+  width: 200px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: none;
+  border: 5px solid #fff;
+  opacity: 1;
+  transition: all 1.25s cubic-bezier(0.42, -1.03, 0.34, 1.54);
+  cursor: pointer;
+}
+i {
+  color: #fff;
+  font-size: 30px;
+  pointer-events: none;
+}
+button:focus {
+  outline: none;
+}
+.startButton {
+  transform: translateY(-50%) scale(1);
+  z-index: 100;
+  i {
+    transition: inherit;
+    transition-duration: 0.7s;
+  }
+}
+.startButton:disabled {
+  opacity: 0;
+  transform: translateY(100%) scale(0.7);
+}
+.startButton:hover {
+  i {
+    color: orange;
+    font-size: 40px;
+  }
+}
+.puzzle__resetButton {
+  transition: all 0.7s ease-out;
+  i {
+    transition: inherit;
+  }
+}
+.puzzle__resetButton:hover {
+  transform: rotate(360deg);
+  i {
+    color: #41002c;
+  }
+}

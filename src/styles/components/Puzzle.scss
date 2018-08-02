@@ -1,3 +1,15 @@
 .puzzle {
-  height: 200px;
+  min-height: 200px;
+  display: none;
+  letter-spacing: 5px;
+  font-size: 30px;
+  transform: translateY(-50%);
+  &__resetButton {
+    height: 100px;
+    width: 100px;
+    border: orange solid 5px;
+  }
+}
+.puzzle--active {
+  display: block;
 }
