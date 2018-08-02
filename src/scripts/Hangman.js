@@ -51,9 +51,9 @@ export class Hangman {
         if (this.status === "playing") {
           this.word.forEach(char => {
             if (this.guessedLetters.includes(char) || char === " ") {
-              renderedText += char;
+              renderedText += `<span class='jump'>${char}</span>`;
             } else {
-              renderedText += "*";
+              renderedText += "<span>*</span>";
             }
           });
         }
@@ -65,7 +65,7 @@ export class Hangman {
         renderedText = "You won! Play Again";
         break;
     }
-    puzzleEl.textContent = renderedText.toUpperCase();
+    puzzleEl.innerHTML = renderedText.toLowerCase();
     chancesEl.textContent = `Chances left: [${this.chances}]`;
     attemptsEl.textContent = `(Success: ${this.attempts.success} // Fails: ${
       this.attempts.fail

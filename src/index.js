@@ -48,3 +48,8 @@ buttonReset.addEventListener("click", async () => {
     game.render(puzzle, chancesEl, results);
   }
 });
+window.addEventListener("animationend", e => {
+  if (e.animationName === "showUp") {
+    puzzle.querySelectorAll("span").forEach(item => item.classList.add("jump"));
+  }
+});

@@ -12,4 +12,19 @@
 }
 .puzzle--active {
   display: block;
+  animation: showUp 1s forwards;
+  animation-iteration-count: 1;
+}
+.jump {
+  transition: all 1s ease;
+  transform: translateY(100%);
+}
+@keyframes showUp {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 100%;
+  }
 }
