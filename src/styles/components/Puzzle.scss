@@ -14,10 +14,21 @@
   display: block;
   animation: showUp 1s forwards;
   animation-iteration-count: 1;
+  span {
+    display: inline-block;
+    min-width: 10px;
+    animation: letterJump cubic-bezier(0.42, -1.03, 0.34, 1.54) forwards 1 0.3s;
+    @for $i from 1 through 99 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{$i * 0.1}s;
+      }
+    }
+  }
 }
-.jump {
-  transition: all 1s ease;
-  transform: translateY(100%);
+[data-jump="false"] {
+  span {
+    animation: none;
+  }
 }
 @keyframes showUp {
   0% {
@@ -26,5 +37,13 @@
 
   100% {
     opacity: 100%;
+  }
+}
+@keyframes letterJump {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
   }
 }

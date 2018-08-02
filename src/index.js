@@ -22,7 +22,6 @@ spansHeader.forEach(el => el.addEventListener("mouseover", moveElement));
 spansHeader.forEach(el => el.addEventListener("mouseout", moveBackElement));
 
 buttonStart.addEventListener("click", async e => {
-  console.log(e.target);
   e.target.disabled = true;
   const text = await request(2);
   game = new Hangman(text, 5);
@@ -35,7 +34,6 @@ buttonStart.addEventListener("click", async e => {
   });
 });
 buttonStart.addEventListener("transitionend", function(e) {
-  console.log(e.propertyName);
   if (e.propertyName === "transform") {
     this.style.display = "none";
     puzzleContainer.classList.add("puzzle--active");
@@ -43,13 +41,17 @@ buttonStart.addEventListener("transitionend", function(e) {
 });
 buttonReset.addEventListener("click", async () => {
   if (game) {
+    puzzleContainer.dataset.jump = "true";
     const text = await request(2);
     game.resetGame(text);
     game.render(puzzle, chancesEl, results);
   }
 });
 window.addEventListener("animationend", e => {
-  if (e.animationName === "showUp") {
-    puzzle.querySelectorAll("span").forEach(item => item.classList.add("jump"));
+  if (e.animationName === "letterJump" && !e.target.nextSibling) {
+    console.log(e.target);
+    console.log(e.target.nextSibling);
+    console.log("------------------------------");
+    puzzleContainer.dataset.jump = "false";
   }
 });
