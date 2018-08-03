@@ -9,6 +9,16 @@ button {
   transition: all 1.25s cubic-bezier(0.42, -1.03, 0.34, 1.54);
   cursor: pointer;
 }
+.resetStats {
+  border-radius: 10px;
+  display: block;
+  height: auto;
+  width: 20%;
+  color: #fff;
+  background: none;
+  border: 2px #fff solid;
+  text-transform: uppercase;
+}
 i {
   color: #fff;
   font-size: 30px;

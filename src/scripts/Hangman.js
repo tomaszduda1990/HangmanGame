@@ -55,12 +55,12 @@ export class Hangman {
       this.guessedLetters
     );
     puzzleEl.innerHTML = renderedText.toUpperCase();
-    chancesEl.textContent = `Chances left: [${this.chances}]`;
+    chancesEl.textContent = `Chances left:[${this.chances}]`;
     console.log(results);
     if (results) {
-      attemptsEl.textContent = `(Success: ${results.success} // Fails: ${
-        results.fail
-      })`;
+      attemptsEl.innerHTML = `<span class="info__chances--success">${
+        results.success
+      }</span><span class="info__chances--fail">${results.fail}</span>`;
     }
   }
 }
