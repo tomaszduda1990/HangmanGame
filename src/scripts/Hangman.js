@@ -1,10 +1,13 @@
+import { getLocal, renderHelper } from "./Helpers";
 export class Hangman {
   constructor(word) {
     this.word = word.toLowerCase().split("");
-    this.attempts = {
-      success: 0,
-      fail: 0
-    };
+    this.attempts = getLocal()
+      ? getLocal()
+      : {
+          success: 0,
+          fail: 0
+        };
     this.chances = 5;
     this.guessedLetters = [];
     this.status = "playing";
@@ -45,31 +48,19 @@ export class Hangman {
     this.word = text.toLowerCase().split("");
   }
   render(puzzleEl, attemptsEl, chancesEl) {
-    let renderedText = "";
-    switch (this.status) {
-      case "playing":
-        if (this.status === "playing") {
-          this.word.forEach(char => {
-            if (this.guessedLetters.includes(char) || char === " ") {
-              renderedText += `<span class='jump'>${char}</span>`;
-            } else {
-              renderedText += "<span>*</span>";
-            }
-          });
-        }
-        break;
-      case "fail":
-        renderedText = `You lost. The answer is "${this.word.join("")}"`;
-        break;
-      case "success":
-        renderedText = "You won! Play Again";
-        break;
-    }
-    puzzleEl.innerHTML = renderedText.toLowerCase();
+    const results = getLocal() ? getLocal() : "";
+    const renderedText = renderHelper(
+      this.status,
+      this.word,
+      this.guessedLetters
+    );
+    puzzleEl.innerHTML = renderedText.toUpperCase();
     chancesEl.textContent = `Chances left: [${this.chances}]`;
-    attemptsEl.textContent = `(Success: ${this.attempts.success} // Fails: ${
-      this.attempts.fail
-    })`;
-    console.log(this.attempts);
+    console.log(results);
+    if (results) {
+      attemptsEl.textContent = `(Success: ${results.success} // Fails: ${
+        results.fail
+      })`;
+    }
   }
 }

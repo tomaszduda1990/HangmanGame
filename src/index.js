@@ -2,6 +2,7 @@ import "./styles/style.scss";
 import { moveElement, moveBackElement } from "./scripts/Helpers";
 import { request } from "./scripts/Request";
 import { Hangman } from "./scripts/Hangman";
+import { setLocal, getLocal } from "./scripts/Helpers";
 let game;
 const puzzleContainer = document.querySelector(".puzzle");
 const puzzle = puzzleContainer.querySelector(".puzzle__text");
@@ -25,6 +26,7 @@ buttonStart.addEventListener("click", async e => {
   e.target.disabled = true;
   const text = await request(2);
   game = new Hangman(text, 5);
+  setLocal(game.attempts);
   game.render(puzzle, chancesEl, results);
   window.addEventListener("keydown", e => {
     const guess = e.key.toLowerCase();
@@ -41,9 +43,10 @@ buttonStart.addEventListener("transitionend", function(e) {
 });
 buttonReset.addEventListener("click", async () => {
   if (game) {
-    puzzleContainer.dataset.jump = "true";
     const text = await request(2);
+    puzzleContainer.dataset.jump = "true";
     game.resetGame(text);
+    setLocal(game.attempts);
     game.render(puzzle, chancesEl, results);
   }
 });
