@@ -59,7 +59,6 @@ export class Hangman {
       this.guessedLetters
     );
     puzzleEl.innerHTML = renderedText.toUpperCase();
-    puzzleEl.classList.add("puzzle__text--active");
     chancesEl.innerHTML = `<span>${this.chances}</span>`;
 
     if (this.correct) {
