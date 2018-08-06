@@ -2,6 +2,7 @@ import { getLocal, renderHelper } from "./Helpers";
 export class Hangman {
   constructor(word) {
     this.word = word.toLowerCase().split("");
+    this.correct = null;
     this.attempts = getLocal()
       ? getLocal()
       : {
@@ -19,8 +20,11 @@ export class Hangman {
     if (this.status === "playing") {
       if (isUnique && badGuess) {
         this.chances--;
+        this.guessedLetters.push(letter);
+        this.correct = false;
       } else if (isUnique) {
         this.guessedLetters.push(letter);
+        this.correct = true;
       }
     } else {
       return;
@@ -55,8 +59,14 @@ export class Hangman {
       this.guessedLetters
     );
     puzzleEl.innerHTML = renderedText.toUpperCase();
-    chancesEl.textContent = `Chances left:[${this.chances}]`;
-    console.log(results);
+    puzzleEl.classList.add("puzzle__text--active");
+    chancesEl.innerHTML = `<span>${this.chances}</span>`;
+
+    if (this.correct) {
+      chancesEl.classList.add("info__results--success");
+    } else if (!this.correct && this.chances < 5) {
+      chancesEl.classList.add("info__results--fail");
+    }
     if (results) {
       attemptsEl.innerHTML = `<span class="info__chances--success">${
         results.success

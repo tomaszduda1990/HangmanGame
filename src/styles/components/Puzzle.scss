@@ -9,6 +9,13 @@
     width: 100px;
     border: orange solid 5px;
   }
+  &__text {
+    opacity: 0;
+    transition: 1s all ease-out;
+  }
+  &__text--active {
+    opacity: 1;
+  }
 }
 .puzzle--active {
   display: block;

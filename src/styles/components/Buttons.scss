@@ -52,7 +52,7 @@ button:focus {
   }
 }
 .puzzle__resetButton:hover {
-  transform: rotate(360deg);
+  transform: rotate(360deg) scale(1.05);
   i {
     color: #41002c;
   }

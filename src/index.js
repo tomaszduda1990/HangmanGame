@@ -3,10 +3,11 @@ import { moveElement, moveBackElement } from "./scripts/Helpers";
 import { request } from "./scripts/Request";
 import { Hangman } from "./scripts/Hangman";
 import { setLocal, getLocal } from "./scripts/Helpers";
+
 let game;
 const puzzleContainer = document.querySelector(".puzzle");
 const puzzle = puzzleContainer.querySelector(".puzzle__text");
-
+const resetStatsBtn = document.querySelector(".resetStats");
 const buttonStart = document.querySelector(".startButton");
 const headerTitle = document.querySelector(".header__title");
 const buttonReset = document.querySelector(".puzzle__resetButton");
@@ -50,11 +51,29 @@ buttonReset.addEventListener("click", async () => {
     game.render(puzzle, chancesEl, results);
   }
 });
+
+resetStatsBtn.addEventListener("click", () => {
+  if (game) {
+    const resetResult = {
+      success: 0,
+      fail: 0
+    };
+    game.attempts = resetResult;
+    setLocal(resetResult);
+    game.render(puzzle, chancesEl, results);
+  }
+});
+
 window.addEventListener("animationend", e => {
+  console.log(e.animationName);
   if (e.animationName === "letterJump" && !e.target.nextSibling) {
     console.log(e.target);
     console.log(e.target.nextSibling);
     console.log("------------------------------");
     puzzleContainer.dataset.jump = "false";
+  } else if (e.animationName === "success") {
+    results.classList.remove("info__results--success");
+  } else if (e.animationName === "fail") {
+    results.classList.remove("info__results--fail");
   }
 });
